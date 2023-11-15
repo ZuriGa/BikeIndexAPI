@@ -13,11 +13,28 @@ function getStolenBike(location) {
     });
 }
 
+function convertDate(timestamp){
+  const date = new Date(timestamp * 1000);
+  const options = { year: 'numeric', month: 'short', day: 'numeric'};
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+
+  return formattedDate;
+}
+
+
 // UI Logic
 function printElements(response, location) {
+  const bikes = response.bikes;
   const resultContainer = document.querySelector('#displayResults');
-  resultContainer.innerText = `Here is a list of descriptions of stolen Bikes in ${location}.  ${response.bikes[0].description}, ${response.bikes[1].description},${response.bikes[2].description}.`;
- 
+  for (const bike of bikes) {
+    const newDate = convertDate(bike.date_stolen);
+    const listItem = document.createElement('li');
+    listItem.textContent = `Date Stolen: ${newDate}, Bike ID: ${bike.id}, Manufacturer: ${bike.manufacturer_name},  Model: ${bike.frame_model}`;
+    resultContainer.appendChild(listItem);
+    let imgTag = document.createElement("img");
+    imgTag.setAttribute("src", bike.thumb);
+    listItem.appendChild(imgTag);
+  }
 }
 
 
