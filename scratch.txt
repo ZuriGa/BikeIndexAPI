@@ -1,0 +1,9 @@
+const bikeList = document.createElement('ul');
+
+    bikes.forEach(bike => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Bike ID: ${bike.id}, Manufacturer: ${bike.manufacturer_name}, Model: ${bike.frame_model}`;
+        bikeList.appendChild(listItem);
+    });
+
+    bikeListContainer.appendChild(bikeList);

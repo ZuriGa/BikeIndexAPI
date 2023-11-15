@@ -39,7 +39,7 @@ function printElements(response, location) {
 
 
 function printError(error, location) {
-  document.querySelector('#results').innerText = `There was an error accessing bike data in your ${location}: ${error}`;
+  document.querySelector('#results').innerText = `There was a small  error accessing bike data in your ${location}: ${error}`;
 }
 
 function handleFormSubmission(event) {
